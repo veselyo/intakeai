@@ -74,3 +74,8 @@ h1 {
 .severity-severe {
     background-color: #ef9a9a; /* Light red */
 }
+
+.condition-positive {
+    color: #ef9a9a; /* Bright red */
+    font-weight: bold;
+}

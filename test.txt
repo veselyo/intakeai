@@ -1,8 +1,8 @@
 curl -X POST https://neuro140.vercel.app/store \
   -H "Content-Type: application/json" \
   -d '{
-        "first_name": "Michaela",
-        "last_name": "Bibby",
+        "first_name": "Ondrej",
+        "last_name": "Vesely",
         "ssn": "112333444",
         "insurance": "Health New England",
         "additional_comments": "",

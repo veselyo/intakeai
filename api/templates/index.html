@@ -13,6 +13,7 @@
             <table id="intake-table">
                 <thead>
                     <tr>
+                        <th>Date</th>
                         <th>Name</th>
                         <th>SSN</th>
                         <th>Insurance</th>
@@ -31,6 +32,7 @@
                 <tbody>
                     {% for patient in patients %}
                     <tr>
+                        <td>{{ patient.date }}</td>
                         <td>{{ patient.first_name }} {{ patient.last_name }}</td>
                         <td>{{ patient.ssn }}</td>
                         <td>{{ patient.insurance }}</td>
@@ -38,8 +40,8 @@
                         <td class="severity-{{ patient.phq4_severity }}">
                             {{ patient.phq4_severity }}
                         </td>
-                        <td>{{ "Yes" if patient.suggests_anxiety else "No" }}</td>
-                        <td>{{ "Yes" if patient.suggests_depression else "No" }}</td>
+                        <td {% if patient.suggests_anxiety %}class="condition-positive"{% endif %}>{{ "Yes" if patient.suggests_anxiety else "No" }}</td>
+                        <td {% if patient.suggests_depression %}class="condition-positive"{% endif %}>{{ "Yes" if patient.suggests_depression else "No" }}</td>
                         <td>{{ patient.phq4_total }}</td>
                         <td>{{ patient.phq4_1 }}</td>
                         <td>{{ patient.phq4_2 }}</td>

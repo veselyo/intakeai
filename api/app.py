@@ -3,6 +3,7 @@ import firebase_admin
 from firebase_admin import credentials, firestore
 import os
 import json
+from datetime import datetime
 
 # Get the Firebase credentials from the environment variable
 firebase_credentials = os.environ.get("FIREBASE_CREDENTIALS")
@@ -72,9 +73,13 @@ def store():
     suggests_anxiety = (phq4_1_score + phq4_2_score) >= 3
     suggests_depression = (phq4_3_score + phq4_4_score) >= 3
 
+    # Get current date in YYYY-MM-DD format
+    current_date = datetime.now().strftime("%Y-%m-%d")
+    
     # Create a new document in the "intake" collection in Firestore
     doc_ref = db.collection("intake").document()
     doc_ref.set({
+        "date": current_date,
         "first_name": first_name,
         "last_name": last_name,
         "insurance": insurance,
