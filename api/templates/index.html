@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Patient Intake Dashboard</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <div class="container">
+        <h1>Patient Intake Dashboard</h1>
+        <div class="table-wrapper">
+            <table id="intake-table">
+                <thead>
+                    <tr>
+                        <th>Name</th>
+                        <th>SSN</th>
+                        <th>Insurance</th>
+                        <th>Phone Number</th>
+                        <th>PHQ-4 Severity</th>
+                        <th>Suggests Anxiety</th>
+                        <th>Suggests Depression</th>
+                        <th>PHQ-4 - Total</th>
+                        <th>PHQ-4 - Q1</th>
+                        <th>PHQ-4 - Q2</th>
+                        <th>PHQ-4 - Q3</th>
+                        <th>PHQ-4 - Q4</th>
+                        <th>Additional Comments</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for patient in patients %}
+                    <tr>
+                        <td>{{ patient.first_name }} {{ patient.last_name }}</td>
+                        <td>{{ patient.ssn }}</td>
+                        <td>{{ patient.insurance }}</td>
+                        <td>{{ patient.phone_number }}</td>
+                        <td class="severity-{{ patient.phq4_severity }}">
+                            {{ patient.phq4_severity }}
+                        </td>
+                        <td>{{ "Yes" if patient.suggests_anxiety else "No" }}</td>
+                        <td>{{ "Yes" if patient.suggests_depression else "No" }}</td>
+                        <td>{{ patient.phq4_total }}</td>
+                        <td>{{ patient.phq4_1 }}</td>
+                        <td>{{ patient.phq4_2 }}</td>
+                        <td>{{ patient.phq4_3 }}</td>
+                        <td>{{ patient.phq4_4 }}</td>
+                        <td class="comments">{{ patient.additional_comments }}</td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+</body>
+</html>

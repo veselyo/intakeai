@@ -1,4 +1,4 @@
-from flask import Flask, request, jsonify
+from flask import Flask, request, jsonify, render_template
 import firebase_admin
 from firebase_admin import credentials, firestore
 import os
@@ -18,7 +18,7 @@ db = firestore.client()
 # Initialize Flask app
 app = Flask(__name__)
 
-# Index route that returns all documents from the "intake" collection
+# Index route that renders a Google Sheets-style view of intake data
 @app.route('/')
 def home():
 
@@ -27,10 +27,10 @@ def home():
         docs = db.collection("intake").stream()
 
         # Convert each document to a dictionary
-        intake_data = [doc.to_dict() for doc in docs]
+        patients = [doc.to_dict() for doc in docs]
 
-        # Return the data as JSON
-        return jsonify(intake_data), 200
+        # Render the template with the data
+        return render_template('index.html', patients=patients)
 
     except Exception as e:
         return jsonify({"error": str(e)}), 500

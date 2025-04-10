@@ -1,0 +1,76 @@
+body {
+    font-family: 'Arial', sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f8f9fa;
+}
+
+.container {
+    width: 100%;
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+h1 {
+    color: #333;
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.table-wrapper {
+    overflow-x: auto;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    border-radius: 5px;
+}
+
+#intake-table {
+    width: 100%;
+    border-collapse: collapse;
+    background-color: white;
+}
+
+#intake-table th, #intake-table td {
+    border: 1px solid #e0e0e0;
+    padding: 10px;
+    text-align: left;
+}
+
+#intake-table th {
+    background-color: #f1f3f4;
+    position: sticky;
+    top: 0;
+    box-shadow: 0 2px 2px -1px rgba(0, 0, 0, 0.1);
+    white-space: nowrap;
+}
+
+#intake-table tbody tr:nth-child(even) {
+    background-color: #f9f9f9;
+}
+
+#intake-table tbody tr:hover {
+    background-color: #f1f1f1;
+}
+
+.comments {
+    max-width: 200px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.severity-normal {
+    background-color: #c8e6c9; /* Light green */
+}
+
+.severity-mild {
+    background-color: #fff9c4; /* Light yellow */
+}
+
+.severity-moderate {
+    background-color: #ffcc80; /* Light orange */
+}
+
+.severity-severe {
+    background-color: #ef9a9a; /* Light red */
+}

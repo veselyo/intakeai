@@ -1,14 +1,14 @@
 curl -X POST https://neuro140.vercel.app/store \
   -H "Content-Type: application/json" \
   -d '{
-        "first_name": "Ondrej",
-        "last_name": "Vesely",
-        "ssn": "123456123",
-        "insurance": "Blue Cross Blue Shield of Massachusetts",
+        "first_name": "Michaela",
+        "last_name": "Bibby",
+        "ssn": "112333444",
+        "insurance": "Health New England",
         "additional_comments": "",
-        "phone_number": "9998887777",
+        "phone_number": "3323331111",
         "phq4_1": "0",
-        "phq4_2": "0",
+        "phq4_2": "1",
         "phq4_3": "2",
-        "phq4_4": "2"
+        "phq4_4": "0"
       }'
