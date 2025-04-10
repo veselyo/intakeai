@@ -40,20 +40,20 @@ def store():
     phq4_4 = data.get('phq4_4')
 
 
-    # # Create a new document in the "intake" collection
-    # doc_ref = db.collection("intake").document()
-    # doc_ref.set({
-    #     "first_name": first_name,
-    #     "last_name": last_name,
-    #     "insurance": insurance,
-    #     "phone_number": phone_number,
-    #     "ssn": ssn,
-    #     "additional_comments": additional_comments,
-    #     "phq4_1": phq4_1,
-    #     "phq4_2": phq4_2,
-    #     "phq4_3": phq4_3,
-    #     "phq4_4": phq4_4
-    # })
+    # Create a new document in the "intake" collection
+    doc_ref = db.collection("intake").document()
+    doc_ref.set({
+        "first_name": first_name,
+        "last_name": last_name,
+        "insurance": insurance,
+        "phone_number": phone_number,
+        "ssn": ssn,
+        "additional_comments": additional_comments,
+        "phq4_1": phq4_1,
+        "phq4_2": phq4_2,
+        "phq4_3": phq4_3,
+        "phq4_4": phq4_4
+    })
 
     # Return a success response to the webhook
     return jsonify({"status": "success"}), 200
