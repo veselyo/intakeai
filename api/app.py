@@ -20,7 +20,14 @@ app = Flask(__name__)
 
 @app.route('/')
 def home():
-    return 'Hello, World!'
+    # Fetch all documents from the "intake" collection in Firestore
+    try:
+        docs = db.collection("intake").stream()
+        # Convert each document snapshot to its dictionary representation
+        intake_data = [doc.to_dict() for doc in docs]
+        return jsonify(intake_data), 200
+    except Exception as e:
+        return jsonify({"error": str(e)}), 500
 
 @app.route('/store', methods=['POST'])
 def store():
