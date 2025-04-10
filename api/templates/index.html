@@ -9,6 +9,10 @@
 <body>
     <div class="container">
         <h1>Patient Intake Dashboard</h1>
+        <div class="sort-controls">
+            <button id="sort-by-date" class="sort-btn">Sort by Date</button>
+            <button id="sort-by-phq4" class="sort-btn">Sort by PHQ-4 Total</button>
+        </div>
         <div class="table-wrapper">
             <table id="intake-table">
                 <thead>
@@ -54,5 +58,50 @@
             </table>
         </div>
     </div>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const table = document.getElementById('intake-table');
+            const tbody = table.querySelector('tbody');
+            const rows = Array.from(tbody.querySelectorAll('tr'));
+            
+            // Sort by date button (newest first)
+            document.getElementById('sort-by-date').addEventListener('click', function() {
+                const sortedRows = rows.sort((a, b) => {
+                    const dateA = a.cells[0].textContent.trim();
+                    const dateB = b.cells[0].textContent.trim();
+                    return dateB.localeCompare(dateA); // Descending order
+                });
+                
+                // Clear the table body
+                while (tbody.firstChild) {
+                    tbody.removeChild(tbody.firstChild);
+                }
+                
+                // Add the sorted rows
+                sortedRows.forEach(row => {
+                    tbody.appendChild(row);
+                });
+            });
+            
+            // Sort by PHQ-4 Total button (highest first)
+            document.getElementById('sort-by-phq4').addEventListener('click', function() {
+                const sortedRows = rows.sort((a, b) => {
+                    const scoreA = parseInt(a.cells[8].textContent.trim()) || 0;
+                    const scoreB = parseInt(b.cells[8].textContent.trim()) || 0;
+                    return scoreB - scoreA; // Descending order
+                });
+                
+                // Clear the table body
+                while (tbody.firstChild) {
+                    tbody.removeChild(tbody.firstChild);
+                }
+                
+                // Add the sorted rows
+                sortedRows.forEach(row => {
+                    tbody.appendChild(row);
+                });
+            });
+        });
+    </script>
 </body>
 </html>
