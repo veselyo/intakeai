@@ -64,12 +64,12 @@
             const tbody = table.querySelector('tbody');
             const rows = Array.from(tbody.querySelectorAll('tr'));
             
-            // Sort by date button (newest first)
+            // Sort by date button (oldest first)
             document.getElementById('sort-by-date').addEventListener('click', function() {
                 const sortedRows = rows.sort((a, b) => {
                     const dateA = a.cells[0].textContent.trim();
                     const dateB = b.cells[0].textContent.trim();
-                    return dateB.localeCompare(dateA); // Descending order
+                    return dateA.localeCompare(dateB); // Ascending order
                 });
                 
                 // Clear the table body

@@ -76,8 +76,7 @@ h1 {
 }
 
 .condition-positive {
-    color: #ef9a9a; /* Bright red */
-    font-weight: bold;
+    background-color: #ef9a9a; /* Light red */
 }
 
 .sort-controls {
