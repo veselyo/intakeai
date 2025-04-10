@@ -4,50 +4,75 @@ from firebase_admin import credentials, firestore
 import os
 import json
 
-# Get the Firebase credentials from the environment variable and parse it
+# Get the Firebase credentials from the environment variable
 firebase_credentials = os.environ.get("FIREBASE_CREDENTIALS")
 if firebase_credentials is None:
     raise Exception("FIREBASE_CREDENTIALS environment variable is not set.")
 
+# Initialize Firestore database
 cred_info = json.loads(firebase_credentials)
 cred = credentials.Certificate(cred_info)
 firebase_admin.initialize_app(cred)
-
-# Initialize Firestore database
 db = firestore.client()
 
+# Initialize Flask app
 app = Flask(__name__)
 
+# Index route that returns all documents from the "intake" collection
 @app.route('/')
 def home():
+
     # Fetch all documents from the "intake" collection in Firestore
     try:
         docs = db.collection("intake").stream()
-        # Convert each document snapshot to its dictionary representation
+
+        # Convert each document to a dictionary
         intake_data = [doc.to_dict() for doc in docs]
+
+        # Return the data as JSON
         return jsonify(intake_data), 200
+
     except Exception as e:
         return jsonify({"error": str(e)}), 500
 
 @app.route('/store', methods=['POST'])
 def store():
-    # Receive the JSON payload from the webhook request
+
+    # Receive a JSON response from the webhook request
     data = request.json
 
-    # Extract your captured variables from the payload
+    # Extract captured variables from the response
     first_name = data.get('first_name')
     last_name = data.get('last_name')
     ssn = data.get('ssn')
     insurance = data.get('insurance')
     additional_comments = data.get('additional_comments')
     phone_number = data.get('phone_number')
-    phq4_1 = data.get('phq4_1')
-    phq4_2 = data.get('phq4_2')
-    phq4_3 = data.get('phq4_3')
-    phq4_4 = data.get('phq4_4')
 
+    # Parse PHQ-4 items as integers (default to 0 if missing)
+    phq4_1_score = int(data.get('phq4_1', 0))
+    phq4_2_score = int(data.get('phq4_2', 0))
+    phq4_3_score = int(data.get('phq4_3', 0))
+    phq4_4_score = int(data.get('phq4_4', 0))
 
-    # Create a new document in the "intake" collection
+    # Compute total PHQ-4 score
+    phq4_total = phq4_1_score + phq4_2_score + phq4_3_score + phq4_4_score
+
+    # Determine overall severity level
+    if phq4_total >= 9:
+        phq4_severity = "severe"
+    elif phq4_total >= 6:
+        phq4_severity = "moderate"
+    elif phq4_total >= 3:
+        phq4_severity = "mild"
+    else:
+        phq4_severity = "normal"
+
+    # Scores suggest anxiety/depression if sum of first/last two items ≥ 3
+    suggests_anxiety = (phq4_1_score + phq4_2_score) >= 3
+    suggests_depression = (phq4_3_score + phq4_4_score) >= 3
+
+    # Create a new document in the "intake" collection in Firestore
     doc_ref = db.collection("intake").document()
     doc_ref.set({
         "first_name": first_name,
@@ -56,11 +81,15 @@ def store():
         "phone_number": phone_number,
         "ssn": ssn,
         "additional_comments": additional_comments,
-        "phq4_1": phq4_1,
-        "phq4_2": phq4_2,
-        "phq4_3": phq4_3,
-        "phq4_4": phq4_4
+        "phq4_1": phq4_1_score,
+        "phq4_2": phq4_2_score,
+        "phq4_3": phq4_3_score,
+        "phq4_4": phq4_4_score,
+        "phq4_total": phq4_total,
+        "phq4_severity": phq4_severity,
+        "suggests_anxiety": suggests_anxiety,
+        "suggests_depression": suggests_depression
     })
 
-    # Return a success response to the webhook
+    # Return a success response
     return jsonify({"status": "success"}), 200
