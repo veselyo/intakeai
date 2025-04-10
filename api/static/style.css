@@ -33,7 +33,7 @@ h1 {
 #intake-table th, #intake-table td {
     border: 1px solid #e0e0e0;
     padding: 10px;
-    text-align: left;
+    text-align: center;
 }
 
 #intake-table th {
