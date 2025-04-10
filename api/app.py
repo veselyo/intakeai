@@ -9,12 +9,12 @@ firebase_credentials = os.environ.get("FIREBASE_CREDENTIALS")
 if firebase_credentials is None:
     raise Exception("FIREBASE_CREDENTIALS environment variable is not set.")
 
-# cred_info = json.loads(firebase_credentials)
-# cred = credentials.Certificate(cred_info)
-# firebase_admin.initialize_app(cred)
+cred_info = json.loads(firebase_credentials)
+cred = credentials.Certificate(cred_info)
+firebase_admin.initialize_app(cred)
 
-# # Initialize Firestore database
-# db = firestore.client()
+# Initialize Firestore database
+db = firestore.client()
 
 app = Flask(__name__)
 
