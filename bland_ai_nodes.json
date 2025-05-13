@@ -220,42 +220,6 @@
       }
     },
     {
-      "id": "3efde26e-4ab1-42e6-8662-e4496a21045d",
-      "data": {
-        "tag": {
-          "name": "PHQ-4",
-          "color": "#0000ff"
-        },
-        "name": "PHQ-4: Q3",
-        "prompt": "You are an AI intake coordinator for Vesely Wellness. You are just starting the last part of the intake screening, where you are tasked with asking the user questions about their mental health over the past two weeks.\n\nYou must follow these instructions exactly step by step:  \n1. Ask the user this question: \"Over the last two weeks, how often have you been feeling down, depressed or hopeless?\"\n\n2. You must ensure that the user must respond with one of the following options:\n1) Not at all,\n2) Several days,\n3) More than half the days,\n4) Nearly every day.\n\n3. If the user does not respond with one of the previously mentioned options, remind them of the rule in a polite and gentle manner.\nExample: \"Could you please choose from the following options, as we previously discussed? -> 1) Not at all, 2) Several days, 3) More than half the days, or 4) Nearly every day?\"\n\n4. After the user responds with an acceptable response, move to the next node. Do not get confirmation or say anything.",
-        "isStart": false,
-        "condition": "You are to ensure that the user responds with one of the following options to the question: \n1) Not at all, \n2) Several days, \n3) More than half the days, \n4) Nearly every day.",
-        "extractVars": [
-          [
-            "phq4_3",
-            "integer",
-            "Based on user's answer to the question, set the variable according to the following guidelines:\na) If they respond with \"1\" or \"Not at all\", set to 1.\nb) If they respond with \"2\" or \"Several days\", set to 2.\nc) If they respond with \"3\" or \"More than half the days\", set to 3.\nd) If they respond with \"4\" or \"Nearly every day\", set to 4.",
-            true
-          ]
-        ],
-        "modelOptions": {
-          "modelType": "smart",
-          "temperature": 0.2,
-          "isSMSReturnNode": false,
-          "skipUserResponse": false,
-          "disableEndCallTool": false,
-          "block_interruptions": false,
-          "disableSilenceRepeat": true
-        },
-        "extractVarSettings": {}
-      },
-      "type": "Wait for Response",
-      "position": {
-        "x": 1416.318153776118,
-        "y": 863.4805090390832
-      }
-    },
-    {
       "id": "306fa5e2-4ad8-4eb2-aad0-b58f4a934898",
       "data": {
         "tag": {
@@ -299,7 +263,7 @@
           "color": "#ff0000"
         },
         "url": "https://neuro140.vercel.app/store",
-        "body": "{\n  \"first_name\": \"{{first_name}}\",\n  \"last_name\": \"{{last_name}}\",\n  \"phq4_1\": \"{{phq4_1}}\",\n  \"phq4_2\": \"{{phq4_2}}\",\n  \"phq4_3\": \"{{phq4_3}}\",\n  \"phq4_4\": \"{{phq4_4}}\"\n}",
+        "body": "{\n  \"first_name\": \"{{first_name}}\",\n  \"last_name\": \"{{last_name}}\",\n  \"phone_number\":\"{{phone_number}}\",\n  \"phq4_1\": \"{{phq4_1}}\",\n  \"phq4_2\": \"{{phq4_2}}\",\n  \"phq4_3\": \"{{phq4_3}}\",\n  \"phq4_4\": \"{{phq4_4}}\"\n}",
         "name": "Store data",
         "method": "POST",
         "headers": [
@@ -346,6 +310,13 @@
           [
             "phq4_4",
             "integer",
+            "You must use the last previously extracted value.",
+            false,
+            false
+          ],
+          [
+            "phone_number",
+            "string",
             "You must use the last previously extracted value.",
             false,
             false
@@ -418,6 +389,42 @@
       }
     },
     {
+      "id": "8b7c1b89-be3d-4a99-9b7e-2d1032915b37",
+      "data": {
+        "tag": {
+          "name": "PHQ-4",
+          "color": "#0000ff"
+        },
+        "name": "PHQ-4: Q3",
+        "prompt": "You are an AI intake coordinator for Vesely Wellness. You are just starting the last part of the intake screening, where you are tasked with asking the user questions about their mental health over the past two weeks.\n\nYou must follow these instructions exactly step by step: \n1. Ask the user this question:\n\"Over the last two weeks, how often have you been feeling down, depressed or hopeless?\n2. You must ensure that the user must respond with one of the following options:\n1) Not at all,\n2) Several days,\n3) More than half the days,\n4) Nearly every day.\n\n3. If the user does not respond with one of the previously mentioned options, remind them of the rule in a polite and gentle manner.\nExample: \"Could you please choose from the following options, as we previously discussed? -> 1) Not at all, 2) Several days, 3) More than half the days, or 4) Nearly every day?\n\n4. After the user responds with an acceptable response, move to the next node. Do not get confirmation or say anything.",
+        "isStart": false,
+        "condition": "You are to ensure that the user responds with one of the following options to the question: \n1) Not at all, \n2) Several days, \n3) More than half the days, \n4) Nearly every day.",
+        "extractVars": [
+          [
+            "phq4_3",
+            "integer",
+            "Based on user's answer to the question, set the variable according to the following guidelines:\na) If they respond with \"1\" or \"Not at all\", set to 1.\nb) If they respond with \"2\" or \"Several days\", set to 2.\nc) If they respond with \"3\" or \"More than half the days\", set to 3.\nd) If they respond with \"4\" or \"Nearly every day\", set to 4.",
+            true
+          ]
+        ],
+        "modelOptions": {
+          "modelType": "smart",
+          "temperature": 0.2,
+          "isSMSReturnNode": false,
+          "skipUserResponse": false,
+          "disableEndCallTool": false,
+          "block_interruptions": false,
+          "disableSilenceRepeat": true
+        },
+        "extractVarSettings": {}
+      },
+      "type": "Wait for Response",
+      "position": {
+        "x": 1411.813325437505,
+        "y": 873.466193557587
+      }
+    },
+    {
       "globalConfig": {
         "globalPrompt": ""
       }
@@ -485,26 +492,6 @@
       "target": "e628e06c-209b-41bb-8855-42cebc48244c"
     },
     {
-      "id": "reactflow__edge-e628e06c-209b-41bb-8855-42cebc48244c-3efde26e-4ab1-42e6-8662-e4496a21045d",
-      "data": {
-        "label": "User responded",
-        "isHighlighted": false
-      },
-      "type": "custom",
-      "source": "e628e06c-209b-41bb-8855-42cebc48244c",
-      "target": "3efde26e-4ab1-42e6-8662-e4496a21045d"
-    },
-    {
-      "id": "reactflow__edge-3efde26e-4ab1-42e6-8662-e4496a21045d-306fa5e2-4ad8-4eb2-aad0-b58f4a934898",
-      "data": {
-        "label": "User responded",
-        "isHighlighted": false
-      },
-      "type": "custom",
-      "source": "3efde26e-4ab1-42e6-8662-e4496a21045d",
-      "target": "306fa5e2-4ad8-4eb2-aad0-b58f4a934898"
-    },
-    {
       "id": "reactflow__edge-306fa5e2-4ad8-4eb2-aad0-b58f4a934898-77db3958-6174-4129-a419-dbb68783fc06",
       "data": {
         "label": "User responded",
@@ -513,6 +500,26 @@
       "type": "custom",
       "source": "306fa5e2-4ad8-4eb2-aad0-b58f4a934898",
       "target": "77db3958-6174-4129-a419-dbb68783fc06"
+    },
+    {
+      "id": "reactflow__edge-e628e06c-209b-41bb-8855-42cebc48244c-8b7c1b89-be3d-4a99-9b7e-2d1032915b37",
+      "data": {
+        "label": "User responded",
+        "isHighlighted": false
+      },
+      "type": "custom",
+      "source": "e628e06c-209b-41bb-8855-42cebc48244c",
+      "target": "8b7c1b89-be3d-4a99-9b7e-2d1032915b37"
+    },
+    {
+      "id": "reactflow__edge-8b7c1b89-be3d-4a99-9b7e-2d1032915b37-306fa5e2-4ad8-4eb2-aad0-b58f4a934898",
+      "data": {
+        "label": "User responded",
+        "isHighlighted": false
+      },
+      "type": "custom",
+      "source": "8b7c1b89-be3d-4a99-9b7e-2d1032915b37",
+      "target": "306fa5e2-4ad8-4eb2-aad0-b58f4a934898"
     },
     {
       "id": "reactflow__edge-77db3958-6174-4129-a419-dbb68783fc06-d5ed53e9-84dd-4cf6-b982-4fe83da3d9a9",
