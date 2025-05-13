@@ -19,8 +19,6 @@
                     <tr>
                         <th>Date</th>
                         <th>Name</th>
-                        <th>SSN</th>
-                        <th>Insurance</th>
                         <th>Phone Number</th>
                         <th>PHQ-4 Severity</th>
                         <th>Suggests Anxiety</th>
@@ -30,7 +28,6 @@
                         <th>PHQ-4 - Q2</th>
                         <th>PHQ-4 - Q3</th>
                         <th>PHQ-4 - Q4</th>
-                        <th>Additional Comments</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -38,8 +35,6 @@
                     <tr>
                         <td>{{ patient.date }}</td>
                         <td>{{ patient.first_name }} {{ patient.last_name }}</td>
-                        <td>{{ patient.ssn }}</td>
-                        <td>{{ patient.insurance }}</td>
                         <td>{{ patient.phone_number }}</td>
                         <td class="severity-{{ patient.phq4_severity }}">
                             {{ patient.phq4_severity }}
@@ -51,7 +46,6 @@
                         <td>{{ patient.phq4_2 }}</td>
                         <td>{{ patient.phq4_3 }}</td>
                         <td>{{ patient.phq4_4 }}</td>
-                        <td class="comments">{{ patient.additional_comments }}</td>
                     </tr>
                     {% endfor %}
                 </tbody>
@@ -86,8 +80,8 @@
             // Sort by PHQ-4 Total button (highest first)
             document.getElementById('sort-by-phq4').addEventListener('click', function() {
                 const sortedRows = rows.sort((a, b) => {
-                    const scoreA = parseInt(a.cells[8].textContent.trim()) || 0;
-                    const scoreB = parseInt(b.cells[8].textContent.trim()) || 0;
+                    const scoreA = parseInt(a.cells[6].textContent.trim()) || 0;
+                    const scoreB = parseInt(b.cells[6].textContent.trim()) || 0;
                     return scoreB - scoreA; // Descending order
                 });
                 

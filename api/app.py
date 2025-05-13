@@ -45,16 +45,14 @@ def store():
     # Extract captured variables from the response
     first_name = data.get('first_name')
     last_name = data.get('last_name')
-    ssn = data.get('ssn')
-    insurance = data.get('insurance')
-    additional_comments = data.get('additional_comments')
     phone_number = data.get('phone_number')
 
-    # Parse PHQ-4 items as integers (default to 0 if missing)
-    phq4_1_score = int(data.get('phq4_1', 0))
-    phq4_2_score = int(data.get('phq4_2', 0))
-    phq4_3_score = int(data.get('phq4_3', 0))
-    phq4_4_score = int(data.get('phq4_4', 0))
+    # Parse PHQ-4 items as integers 
+    # Default to 0 if missing, subtract 1 to convert to 0-3 scale
+    phq4_1_score = int(data.get('phq4_1', 0)) - 1
+    phq4_2_score = int(data.get('phq4_2', 0)) - 1
+    phq4_3_score = int(data.get('phq4_3', 0)) - 1
+    phq4_4_score = int(data.get('phq4_4', 0)) - 1
 
     # Compute total PHQ-4 score
     phq4_total = phq4_1_score + phq4_2_score + phq4_3_score + phq4_4_score
@@ -82,10 +80,7 @@ def store():
         "date": current_date,
         "first_name": first_name,
         "last_name": last_name,
-        "insurance": insurance,
         "phone_number": phone_number,
-        "ssn": ssn,
-        "additional_comments": additional_comments,
         "phq4_1": phq4_1_score,
         "phq4_2": phq4_2_score,
         "phq4_3": phq4_3_score,
