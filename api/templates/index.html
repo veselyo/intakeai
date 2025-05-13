@@ -3,31 +3,31 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Patient Intake Dashboard</title>
+    <title>IntakeAI Dashboard</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
 </head>
 <body>
     <div class="container">
-        <h1>Patient Intake Dashboard</h1>
+        <h1>IntakeAI Dashboard</h1>
         <div class="sort-controls">
-            <button id="sort-by-date" class="sort-btn">Sort by Date</button>
-            <button id="sort-by-phq4" class="sort-btn">Sort by PHQ-4 Total</button>
+            <button id="sort-by-date" class="sort-btn">Sort by Date (Oldest First)</button>
+            <button id="sort-by-phq4" class="sort-btn">Sort by Symptom Severity (Highest First)</button>
         </div>
         <div class="table-wrapper">
             <table id="intake-table">
                 <thead>
                     <tr>
-                        <th>Date</th>
+                        <th>Date of Contact</th>
                         <th>Name</th>
                         <th>Phone Number</th>
-                        <th>PHQ-4 Severity</th>
-                        <th>Suggests Anxiety</th>
-                        <th>Suggests Depression</th>
-                        <th>PHQ-4 - Total</th>
-                        <th>PHQ-4 - Q1</th>
-                        <th>PHQ-4 - Q2</th>
-                        <th>PHQ-4 - Q3</th>
-                        <th>PHQ-4 - Q4</th>
+                        <th>Symptom Severity</th>
+                        <th>Suggests Anxiety?</th>
+                        <th>Suggests Depression?</th>
+                        <th>PHQ-4 Total</th>
+                        <th>PHQ-4: Q1</th>
+                        <th>PHQ-4: Q2</th>
+                        <th>PHQ-4: Q3</th>
+                        <th>PHQ-4: Q4</th>
                     </tr>
                 </thead>
                 <tbody>
