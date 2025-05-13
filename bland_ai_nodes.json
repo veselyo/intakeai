@@ -1,0 +1,527 @@
+{
+  "nodes": [
+    {
+      "id": "1",
+      "data": {
+        "tag": {
+          "name": "Intro",
+          "color": "#6464fa"
+        },
+        "name": "Intro",
+        "prompt": "You are an AI intake coordinator for Vesely Wellness. Your goal is to greet the user and request that they go through our quick intake screening process with you.\n\nYou must follow these instructions step by step:\n1. Begin by greeting the user.\nDialogue Example - \"Hi! Thanks for calling Vesely Wellness.\"\n2. Explain the purpose of this call, which is guiding the user through our quick intake screning process.\nDialogue Example - \"I'd like to guide you through our quick intake screening process so that we can begin your intake as soon as possible.\n3. Ask the user whether they are ready to begin.\nDialogue Example - \"May we get started?\"\n\nClarification FAQs:\n1) Vesely Wellness is a mental health treatment center that helps individuals manage symptoms of anxiety and depression through personalized care.\n2) The screening helps us learn more about your current situation and collect the information needed to being your care.\n3) The screening will take no longer than 5 mintutes.",
+        "isStart": true,
+        "modelOptions": {
+          "modelType": "smart",
+          "temperature": 0.2,
+          "isSMSReturnNode": false,
+          "skipUserResponse": false,
+          "disableEndCallTool": false,
+          "block_interruptions": false,
+          "disableSilenceRepeat": true
+        },
+        "extractVarSettings": {}
+      },
+      "type": "Default",
+      "position": {
+        "x": 618.0394981402253,
+        "y": -288.2521563899234
+      }
+    },
+    {
+      "id": "d5ed53e9-84dd-4cf6-b982-4fe83da3d9a9",
+      "data": {
+        "tag": {
+          "name": "Hang up",
+          "color": "#ff0000"
+        },
+        "name": "End call",
+        "prompt": "You asked the user all of the necessary questions and finished the intake screening process. You are now tasked with thanking the user for calling Vesely Wellness and informing them that we will be in touch shortly.\n\nYou must follow these instructions exactly step by step:\n1. Provide a polite and courteous conclusion to the call.\nDialogue Example - \"Thank you for calling Vesely Wellness, We appreciate your time and will be in touch shortly.\"\n\n2. Avoid asking any additional questions or requesting further information. Simply end the call now.",
+        "modelOptions": {
+          "modelType": "smart",
+          "temperature": 0.2,
+          "isSMSReturnNode": false,
+          "skipUserResponse": true,
+          "disableEndCallTool": false,
+          "block_interruptions": true,
+          "disableSilenceRepeat": true
+        }
+      },
+      "type": "End Call",
+      "position": {
+        "x": 619.2958877910768,
+        "y": 1153.333376218573
+      }
+    },
+    {
+      "id": "3c7be829-e555-4541-8a8b-bb3fe12a0180",
+      "data": {
+        "tag": {
+          "name": "Basic Info",
+          "color": "#00ff00"
+        },
+        "name": "First name",
+        "prompt": "You are an AI intake coordinator for Vesely Wellness. The user just agreed to go through our quick intake screening process. Your primary goal at this stage is to ask the user to spell their first name.\n\nYou must follow these instructions step by step. Pay attention to the details regarding your behavior:\n1. First, initiate the conversation by a smooth transition and request the user to spell their first name.\nDialogue Example - \"Great! Could you spell your first name for me, please?\"\nImportant things to consider at this step: The user will likely make pauses while spelling their first name. Do not interrupt them. Wait for at least 3 second long silence before you say anything after your question.\n\n2. Then, always confirm that you got the user's first name right by spelling it back to them based on what you captured.\nDialogue Example: \"Just to confirm, I got your first name as [Spell their first name back to them]. Is that right?\"\n\n3. If the user corrects you, kindly apologize, and acknowledge their correction. Then, confirm the updated information.\nDialogue example: \"Sorry about that. So it is [Spell their first name back to them]?\"",
+        "condition": "The user must confirm that we captured their first name right.",
+        "extractVars": [
+          [
+            "first_name",
+            "string",
+            "Extract user's first name.\n\nImportant rules that you must follow:\n1. Store the first name as one string of alphabetical characters. For example, when the user spells their first name as \"J O S H\", you should store it as \"Josh\".\n\n2. If the user corrects you at any point, always update the variable to the corrected version.",
+            true
+          ]
+        ],
+        "modelOptions": {
+          "modelType": "smart",
+          "temperature": 0.2,
+          "isSMSReturnNode": false,
+          "skipUserResponse": false,
+          "disableEndCallTool": false,
+          "block_interruptions": false,
+          "disableSilenceRepeat": true
+        },
+        "extractVarSettings": {}
+      },
+      "type": "Wait for Response",
+      "position": {
+        "x": 160.3495432683414,
+        "y": 19.17721849743198
+      }
+    },
+    {
+      "id": "e044f352-b6fc-409d-89b0-f97e40b6fc24",
+      "data": {
+        "tag": {
+          "name": "Basic Info",
+          "color": "#00ff00"
+        },
+        "name": "Phone number",
+        "prompt": "You are an AI intake coordinator for Vesely Wellness. You are in the process of collecting the user's contact information. They just confirmed that we got their last name correctly. Your primary goal at this stage is to get their phone number.\n\nYou must follow these instructions step by step. Pay attention to the details regarding your behavior:\n1. First, initiate the conversation by a smooth transition and politely request the user to give you their phone number.\nDialogue Example: \"Perfect. And what is the best phone number to reach you at?\"\nImportant things to consider at this step: The user will likely make pauses while spelling their last name. Do not interrupt them. Wait for at least 3 second long silence before you say anything after your question.\n\n2. Always make sure the phone number has 10 digits. If not, kindly ask them to provide a 10 digit phone number.\nDialogue example: \"The phone number I heard did not have 10 digits. Would you repeat it for me, please?\"\n\n3. Then, always confirm whether we captured the user's phone number right. Read out each digit as a full word when repeating it back to them for confirmation.\nDialogue example: \"I got your phone number as [Read out the phone number digit by digit]. Is that correct?\"\n\n4. If the user corrects you, apologize and acknowledge their correction. Then, confirm whether the new captured phone number is right.\nDialogue example: \"Thank you, sorry about that. So your phone number is [Read out the phone number digit by digit]?\"",
+        "isStart": false,
+        "condition": "The user must confirm that we captured their phone number right.",
+        "extractVars": [
+          [
+            "phone_number",
+            "string",
+            "Extract the user's preffered phone number.\n\nImportant instructions that you must follow:\n1. Extract the phone number as a string consisting only of numeric characters. For example, a phone number (123) 456-7890 should be stored as \"1234567890\"\n\n2. If the user corrects us during confirmation, always update the variable to the corrected version",
+            true
+          ]
+        ],
+        "modelOptions": {
+          "modelType": "smart",
+          "temperature": 0.2,
+          "isSMSReturnNode": false,
+          "skipUserResponse": false,
+          "disableEndCallTool": false,
+          "block_interruptions": false,
+          "disableSilenceRepeat": true
+        },
+        "extractVarSettings": {}
+      },
+      "type": "Wait for Response",
+      "position": {
+        "x": 158.3307514026846,
+        "y": 599.1149627295298
+      }
+    },
+    {
+      "id": "66782f94-26eb-4e78-955b-1ee6bb9ce374",
+      "data": {
+        "tag": {
+          "name": "PHQ-4",
+          "color": "#0000ff"
+        },
+        "name": "Transition to PHQ-4",
+        "prompt": "You are an AI intake coordinator for Vesely Wellness. You just finished the first part of the user's intake screening process, where you collected their necessary contact information. Now, your goal is to transition smoothly into the second and last part of their intake screening process, which is a four-item mental health questionnaire.\n\nYou must exactly follow these steps:\n1. Thank the user for their cooperation so far, and tell them that we are moving to the last part of their intake screening, where you will ask them questions about their mental health in the most recent two weeks.\nDialogue example: \"Thank you! We're now moving on to the final part of the intake screening, which focuses on your mental health over the past two weeks.\"\n\n2. Kindly ask the user to answer the questions honestly, as they will help us understand their situation better.\nDialogue example: \"Please answer the following questions as honestly as possible so that we can provide you the most suitable support.\"\n\n3. Explain how the user should answer the following four questions. For each question, their options are: 1) Not at all, 2) Several days, 3) More than half the days, 4) Nearly every day.\nDialogue Example: \"I will ask you four questions, and for each, you'll have four response options: 1) Not at all, 2) Several days, 3) More than half the days, and 4) Nearly every day. Please choose a number from 1 to 4 for the option that best reflects your experience.\"\n\n4. Ask the user whether they have any clarifying questions, and if not, you can continue.\nDialogue Example: \"Do you have any questions before we proceed with the mental health questionnaire?\"",
+        "isStart": false,
+        "modelOptions": {
+          "modelType": "smart",
+          "temperature": 0.2,
+          "isSMSReturnNode": false,
+          "skipUserResponse": false,
+          "disableEndCallTool": false,
+          "block_interruptions": false,
+          "disableSilenceRepeat": true
+        }
+      },
+      "type": "Default",
+      "position": {
+        "x": 976.810658964245,
+        "y": -3.63733365447996
+      }
+    },
+    {
+      "id": "909070d4-e69d-46f1-852e-05703c4d01d5",
+      "data": {
+        "tag": {
+          "name": "PHQ-4",
+          "color": "#0000ff"
+        },
+        "name": "PHQ-4: Q1",
+        "prompt": "You are an AI intake coordinator for Vesely Wellness. You are just starting the last part of the intake screening, where you are tasked with asking the user questions about their mental health over the past two weeks.\n\nYou must follow these instructions exactly step by step:\n1. Make a short transition to begin the questioning. \nDialogue example: \"Okay, let's begin then.\"\n\n2. Ask the user this question: \"Over the last two weeks, how often have you been feeling nervous, anxious, or on edge?\"\n\n3. You must ensure that the user must respond with one of the following options: \n1) Not at all, \n2) Several days, \n3) More than half the days, \n4) Nearly every day.\n\n4. If the user does not respond with one of the previously mentioned options, remind them of the rule in a polite and gentle manner.\nExample: \"Could you please choose from the following options, as we previously discussed? -> 1) Not at all, 2) Several days, 3) More than half the days, or 4) Nearly every day?\"\n\n5. After the user responds with an acceptable response, move to the next node. Do not get confirmation or say anything.",
+        "condition": "You are to ensure that the user responds with one of the following options to the question: \n1) Not at all, \n2) Several days, \n3) More than half the days, \n4) Nearly every day.",
+        "extractVars": [
+          [
+            "phq4_1",
+            "integer",
+            "Based on user's answer to the question, set the variable according to the following guidelines:\na) If they respond with \"1\" or \"Not at all\", set to 1.\nb) If they respond with \"2\" or \"Several days\", set to 2.\nc) If they respond with \"3\" or \"More than half the days\", set to 3.\nd) If they respond with \"4\" or \"Nearly every day\", set to 4.",
+            true
+          ]
+        ],
+        "modelOptions": {
+          "modelType": "smart",
+          "temperature": 0.2,
+          "isSMSReturnNode": false,
+          "skipUserResponse": false,
+          "disableEndCallTool": false,
+          "block_interruptions": false,
+          "disableSilenceRepeat": true
+        },
+        "extractVarSettings": {}
+      },
+      "type": "Wait for Response",
+      "position": {
+        "x": 1418.658641965864,
+        "y": 287.5006141871165
+      }
+    },
+    {
+      "id": "e628e06c-209b-41bb-8855-42cebc48244c",
+      "data": {
+        "tag": {
+          "name": "PHQ-4",
+          "color": "#0000ff"
+        },
+        "name": "PHQ-4: Q2",
+        "prompt": "You are an AI intake coordinator for Vesely Wellness. You are just starting the last part of the intake screening, where you are tasked with asking the user questions about their mental health over the past two weeks.\n\nYou must follow these instructions exactly step by step:\n1. Ask the user this question: \"Over the last two weeks, how often have you not been able to stop or control worrying?\"\n\n2. You must ensure that the user must respond with one of the following options:\n1) Not at all,\n2) Several days,\n3) More than half the days,\n4) Nearly every day.\n\n3. If the user does not respond with one of the previously mentioned options, remind them of the rule in a polite and gentle manner.\nExample: \"Could you please choose from the following options, as we previously discussed? -> 1) Not at all, 2) Several days, 3) More than half the days, or 4) Nearly every day?\"\n\n4. After the user responds with an acceptable response, move to the next node. Do not get confirmation or say anything.",
+        "condition": "You are to ensure that the user responds with one of the following options to the question: \n1) Not at all, \n2) Several days, \n3) More than half the days, \n4) Nearly every day.",
+        "extractVars": [
+          [
+            "phq4_2",
+            "integer",
+            "Based on user's answer to the question, set the variable according to the following guidelines:\na) If they respond with \"1\" or \"Not at all\", set to 1.\nb) If they respond with \"2\" or \"Several days\", set to 2.\nc) If they respond with \"3\" or \"More than half the days\", set to 3.\nd) If they respond with \"4\" or \"Nearly every day\", set to 4.",
+            true
+          ]
+        ],
+        "modelOptions": {
+          "modelType": "smart",
+          "temperature": 0.2,
+          "isSMSReturnNode": false,
+          "skipUserResponse": false,
+          "disableEndCallTool": false,
+          "block_interruptions": false,
+          "disableSilenceRepeat": true
+        },
+        "extractVarSettings": {}
+      },
+      "type": "Wait for Response",
+      "position": {
+        "x": 1416.831629679122,
+        "y": 580.2348131215127
+      }
+    },
+    {
+      "id": "3efde26e-4ab1-42e6-8662-e4496a21045d",
+      "data": {
+        "tag": {
+          "name": "PHQ-4",
+          "color": "#0000ff"
+        },
+        "name": "PHQ-4: Q3",
+        "prompt": "You are an AI intake coordinator for Vesely Wellness. You are just starting the last part of the intake screening, where you are tasked with asking the user questions about their mental health over the past two weeks.\n\nYou must follow these instructions exactly step by step:  \n1. Ask the user this question: \"Over the last two weeks, how often have you been feeling down, depressed or hopeless?\"\n\n2. You must ensure that the user must respond with one of the following options:\n1) Not at all,\n2) Several days,\n3) More than half the days,\n4) Nearly every day.\n\n3. If the user does not respond with one of the previously mentioned options, remind them of the rule in a polite and gentle manner.\nExample: \"Could you please choose from the following options, as we previously discussed? -> 1) Not at all, 2) Several days, 3) More than half the days, or 4) Nearly every day?\"\n\n4. After the user responds with an acceptable response, move to the next node. Do not get confirmation or say anything.",
+        "isStart": false,
+        "condition": "You are to ensure that the user responds with one of the following options to the question: \n1) Not at all, \n2) Several days, \n3) More than half the days, \n4) Nearly every day.",
+        "extractVars": [
+          [
+            "phq4_3",
+            "integer",
+            "Based on user's answer to the question, set the variable according to the following guidelines:\na) If they respond with \"1\" or \"Not at all\", set to 1.\nb) If they respond with \"2\" or \"Several days\", set to 2.\nc) If they respond with \"3\" or \"More than half the days\", set to 3.\nd) If they respond with \"4\" or \"Nearly every day\", set to 4.",
+            true
+          ]
+        ],
+        "modelOptions": {
+          "modelType": "smart",
+          "temperature": 0.2,
+          "isSMSReturnNode": false,
+          "skipUserResponse": false,
+          "disableEndCallTool": false,
+          "block_interruptions": false,
+          "disableSilenceRepeat": true
+        },
+        "extractVarSettings": {}
+      },
+      "type": "Wait for Response",
+      "position": {
+        "x": 1416.318153776118,
+        "y": 863.4805090390832
+      }
+    },
+    {
+      "id": "306fa5e2-4ad8-4eb2-aad0-b58f4a934898",
+      "data": {
+        "tag": {
+          "name": "PHQ-4",
+          "color": "#0000ff"
+        },
+        "name": "PHQ-4: Q4",
+        "prompt": "You are an AI intake coordinator for Vesely Wellness. You are just starting the last part of the intake screening, where you are tasked with asking the user questions about their mental health over the past two weeks.\nYou must follow these instructions exactly step by step:\n1. Ask the user this question: \"Over the last two weeks, how often have you had little interest or pleasure in doing things?\"\n\n2. You must ensure that the user must respond with one of the following options:\n1) Not at all,\n2) Several days,\n3) More than half the days,\n4) Nearly every day.\n\n3. If the user does not respond with one of the previously mentioned options, remind them of the rule in a polite and gentle manner.\nExample: \"Could you please choose from the following options, as we previously discussed? -> 1) Not at all, 2) Several days, 3) More than half the days, or 4) Nearly every day?\"\n\n4. After the user responds with an acceptable response, move to the next node. Do not get confirmation or say anything.",
+        "isStart": false,
+        "condition": "You are to ensure that the user responds with one of the following options to the question: \n1) Not at all, \n2) Several days, \n3) More than half the days, \n4) Nearly every day.",
+        "extractVars": [
+          [
+            "phq4_4",
+            "integer",
+            "Based on user's answer to the question, set the variable according to the following guidelines:\na) If they respond with \"1\" or \"Not at all\", set to 1.\nb) If they respond with \"2\" or \"Several days\", set to 2.\nc) If they respond with \"3\" or \"More than half the days\", set to 3.\nd) If they respond with \"4\" or \"Nearly every day\", set to 4.",
+            true
+          ]
+        ],
+        "modelOptions": {
+          "modelType": "smart",
+          "temperature": 0.2,
+          "isSMSReturnNode": false,
+          "skipUserResponse": false,
+          "disableEndCallTool": false,
+          "block_interruptions": false,
+          "disableSilenceRepeat": true
+        },
+        "extractVarSettings": {}
+      },
+      "type": "Wait for Response",
+      "position": {
+        "x": 1415.218563850474,
+        "y": 1154.616567122963
+      }
+    },
+    {
+      "id": "77db3958-6174-4129-a419-dbb68783fc06",
+      "data": {
+        "tag": {
+          "name": "End Call",
+          "color": "#ff0000"
+        },
+        "url": "https://neuro140.vercel.app/store",
+        "body": "{\n  \"first_name\": \"{{first_name}}\",\n  \"last_name\": \"{{last_name}}\",\n  \"phq4_1\": \"{{phq4_1}}\",\n  \"phq4_2\": \"{{phq4_2}}\",\n  \"phq4_3\": \"{{phq4_3}}\",\n  \"phq4_4\": \"{{phq4_4}}\"\n}",
+        "name": "Store data",
+        "method": "POST",
+        "headers": [
+          [
+            "Content-Type",
+            "application/json"
+          ]
+        ],
+        "extractVars": [
+          [
+            "first_name",
+            "string",
+            "You must use the last previously extracted value.",
+            false
+          ],
+          [
+            "last_name",
+            "string",
+            "You must use the last previously extracted value.",
+            false,
+            false
+          ],
+          [
+            "phq4_1",
+            "integer",
+            "You must use the last previously extracted value.",
+            false,
+            false
+          ],
+          [
+            "phq4_2",
+            "integer",
+            "You must use the last previously extracted value.",
+            false,
+            false
+          ],
+          [
+            "phq4_3",
+            "integer",
+            "You must use the last previously extracted value.",
+            false,
+            false
+          ],
+          [
+            "phq4_4",
+            "integer",
+            "You must use the last previously extracted value.",
+            false,
+            false
+          ]
+        ],
+        "max_retries": 0,
+        "modelOptions": {
+          "modelType": "smart",
+          "temperature": 0.2,
+          "isSMSReturnNode": false,
+          "skipUserResponse": false,
+          "disableEndCallTool": false,
+          "block_interruptions": true,
+          "disableSilenceRepeat": true
+        },
+        "timeoutValue": 10,
+        "responsePathways": [
+          [
+            "Default/Webhook Completion",
+            "",
+            "",
+            {
+              "id": "d5ed53e9-84dd-4cf6-b982-4fe83da3d9a9",
+              "name": "End call"
+            }
+          ]
+        ],
+        "extractVarSettings": {}
+      },
+      "type": "Webhook",
+      "position": {
+        "x": 617.6001080437842,
+        "y": 864.665192781607
+      }
+    },
+    {
+      "id": "5fef65cc-910d-4b3a-8220-dfbbe20f55fa",
+      "data": {
+        "tag": {
+          "name": "Basic Info",
+          "color": "#00ff00"
+        },
+        "name": "Last name",
+        "prompt": "You are an AI intake coordinator for Vesely Wellness. The user just confirmed that you captured their first name correctly. Your primary goal at this stage is to ask the user to spell their last name.\n\nYou must follow these instructions step by step. Pay attention to the details regarding your behavior:\n1. First, initiate the conversation by a smooth transition and request the user to spell their last name.\nDialogue Example - \"\"Thank you! Would you please spell your last name as well?\"\nImportant things to consider at this step: The user will likely make pauses while spelling their last name. Do not interrupt them. Wait for at least 3 second long silence before you say anything after your question.\n\n2. Then, always confirm that you got the user's last name right by spelling it back to them based on what you captured.\nDialogue Example: \"So your last name is [Spell their last name back to them]?\"\n\n3. If the user corrects you, kindly apologize, and acknowledge their correction. Then, confirm the updated information.\nDialogue example: \"Apologies for that. Is [Spell their first name back to them] correct?\"",
+        "isStart": false,
+        "condition": "The user must confirm that we captured their last name right.",
+        "extractVars": [
+          [
+            "last_name",
+            "string",
+            "Extract user's last name.\n\nImporant instructions that you must follow:\n1. Store the last name as one string of alphabetical characters. For example, when the user spells their last name as \"S M I T H\", you should store it as \"Smith\".\n\n2. If the user corrects you at any point, always update the variable to the corrected version.",
+            true
+          ]
+        ],
+        "modelOptions": {
+          "modelType": "smart",
+          "temperature": 0.2,
+          "isSMSReturnNode": false,
+          "skipUserResponse": false,
+          "disableEndCallTool": false,
+          "block_interruptions": false,
+          "disableSilenceRepeat": true
+        },
+        "extractVarSettings": {}
+      },
+      "type": "Wait for Response",
+      "position": {
+        "x": 158.8862530581339,
+        "y": 325.283319444586
+      }
+    },
+    {
+      "globalConfig": {
+        "globalPrompt": ""
+      }
+    }
+  ],
+  "edges": [
+    {
+      "id": "reactflow__edge-1-3c7be829-e555-4541-8a8b-bb3fe12a0180",
+      "data": {
+        "label": "User is ready to begin",
+        "isHighlighted": false
+      },
+      "type": "custom",
+      "source": "1",
+      "target": "3c7be829-e555-4541-8a8b-bb3fe12a0180"
+    },
+    {
+      "id": "reactflow__edge-3c7be829-e555-4541-8a8b-bb3fe12a0180-5fef65cc-910d-4b3a-8220-dfbbe20f55fa",
+      "data": {
+        "label": "First name extracted",
+        "isHighlighted": false
+      },
+      "type": "custom",
+      "source": "3c7be829-e555-4541-8a8b-bb3fe12a0180",
+      "target": "5fef65cc-910d-4b3a-8220-dfbbe20f55fa"
+    },
+    {
+      "id": "reactflow__edge-5fef65cc-910d-4b3a-8220-dfbbe20f55fa-e044f352-b6fc-409d-89b0-f97e40b6fc24",
+      "data": {
+        "label": "Last name extracted",
+        "isHighlighted": false
+      },
+      "type": "custom",
+      "source": "5fef65cc-910d-4b3a-8220-dfbbe20f55fa",
+      "target": "e044f352-b6fc-409d-89b0-f97e40b6fc24"
+    },
+    {
+      "id": "reactflow__edge-e044f352-b6fc-409d-89b0-f97e40b6fc24-66782f94-26eb-4e78-955b-1ee6bb9ce374",
+      "data": {
+        "label": "User responded",
+        "isHighlighted": false
+      },
+      "type": "custom",
+      "source": "e044f352-b6fc-409d-89b0-f97e40b6fc24",
+      "target": "66782f94-26eb-4e78-955b-1ee6bb9ce374"
+    },
+    {
+      "id": "reactflow__edge-66782f94-26eb-4e78-955b-1ee6bb9ce374-909070d4-e69d-46f1-852e-05703c4d01d5",
+      "data": {
+        "label": "User is ready",
+        "isHighlighted": false
+      },
+      "type": "custom",
+      "source": "66782f94-26eb-4e78-955b-1ee6bb9ce374",
+      "target": "909070d4-e69d-46f1-852e-05703c4d01d5"
+    },
+    {
+      "id": "reactflow__edge-909070d4-e69d-46f1-852e-05703c4d01d5-e628e06c-209b-41bb-8855-42cebc48244c",
+      "data": {
+        "label": "User responded",
+        "isHighlighted": false
+      },
+      "type": "custom",
+      "source": "909070d4-e69d-46f1-852e-05703c4d01d5",
+      "target": "e628e06c-209b-41bb-8855-42cebc48244c"
+    },
+    {
+      "id": "reactflow__edge-e628e06c-209b-41bb-8855-42cebc48244c-3efde26e-4ab1-42e6-8662-e4496a21045d",
+      "data": {
+        "label": "User responded",
+        "isHighlighted": false
+      },
+      "type": "custom",
+      "source": "e628e06c-209b-41bb-8855-42cebc48244c",
+      "target": "3efde26e-4ab1-42e6-8662-e4496a21045d"
+    },
+    {
+      "id": "reactflow__edge-3efde26e-4ab1-42e6-8662-e4496a21045d-306fa5e2-4ad8-4eb2-aad0-b58f4a934898",
+      "data": {
+        "label": "User responded",
+        "isHighlighted": false
+      },
+      "type": "custom",
+      "source": "3efde26e-4ab1-42e6-8662-e4496a21045d",
+      "target": "306fa5e2-4ad8-4eb2-aad0-b58f4a934898"
+    },
+    {
+      "id": "reactflow__edge-306fa5e2-4ad8-4eb2-aad0-b58f4a934898-77db3958-6174-4129-a419-dbb68783fc06",
+      "data": {
+        "label": "User responded",
+        "isHighlighted": false
+      },
+      "type": "custom",
+      "source": "306fa5e2-4ad8-4eb2-aad0-b58f4a934898",
+      "target": "77db3958-6174-4129-a419-dbb68783fc06"
+    },
+    {
+      "id": "reactflow__edge-77db3958-6174-4129-a419-dbb68783fc06-d5ed53e9-84dd-4cf6-b982-4fe83da3d9a9",
+      "data": {
+        "label": "Default/Webhook Completion"
+      },
+      "type": "custom",
+      "source": "77db3958-6174-4129-a419-dbb68783fc06",
+      "target": "d5ed53e9-84dd-4cf6-b982-4fe83da3d9a9"
+    }
+  ]
+}
