@@ -14,7 +14,7 @@ reliability in data collection accuracy, clarity, tone, and role adherence.
 These findings suggest that conversation AI can be a highly useful tool in 
 reducing barriers to care at the earliest stages of the intake process.
 
-## Publications
+## Research Publication
 For detailed information, please see the entire research paper here:
 [IntakeAI](IntakeAI.pdf).
 
@@ -27,7 +27,7 @@ the collected information. You can access the dashboard here:
 https://neuro140.vercel.app/. As per the demo, “Mark Davis” was added there
 automatically.
 
-![Dashboard Screenshot](dashboard.png).
+![Dashboard Screenshot](dashboard.png)
 
 ## Contributors
 - Ondrej Vesely – Author
