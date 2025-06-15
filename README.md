@@ -25,7 +25,8 @@ interacting with the AI intake bot here:
 After the call is ended, the dashboard will automatically add an entry with
 the collected information. You can access the dashboard here:
 https://neuro140.vercel.app/. As per the demo, “Mark Davis” was added there
-automatically. [Dashboard Screenshot](dashboard.png).
+automatically. 
+![Dashboard Screenshot](dashboard.png).
 
 ## Contributors
 - Ondrej Vesely – Author
