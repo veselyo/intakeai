@@ -26,7 +26,7 @@ https://github.com/user-attachments/assets/434308f1-5937-4616-b4ac-f1f41a76c207
 
 After the call is ended, the dashboard will automatically add an entry with
 the collected information. You can access the dashboard here:
-https://neuro140.vercel.app/. As per the demo, “Mark Davis” was added there
+[Dashboard Server](https://intakeai-4izya2nwk-ovesely.vercel.app/). As per the demo, “Mark Davis” was added there
 automatically.
 
 ![Dashboard Screenshot](dashboard.png)
