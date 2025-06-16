@@ -1,3 +1,5 @@
+
+https://github.com/user-attachments/assets/bdad29ae-6a62-4c09-ba60-84d73f82cd8f
 # IntakeAI
 ## Abstract
 Access to mental health treatment faces large barriers when it comes to the 
@@ -21,7 +23,9 @@ For detailed information, please see the entire research paper here:
 ## Demo
 You can listen to a 3-minute long demo of GPT-4o roleplaying as a patient
 interacting with the AI intake bot here:
-[Demo](ondrejdemo%20-%205_13_25,%2011.05%E2%80%AFPM%20%281%29.mp3).
+
+https://github.com/user-attachments/assets/434308f1-5937-4616-b4ac-f1f41a76c207
+
 After the call is ended, the dashboard will automatically add an entry with
 the collected information. You can access the dashboard here:
 https://neuro140.vercel.app/. As per the demo, “Mark Davis” was added there
