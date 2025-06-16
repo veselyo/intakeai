@@ -15,8 +15,7 @@ These findings suggest that conversation AI can be a highly useful tool in
 reducing barriers to care at the earliest stages of the intake process.
 
 ## Research Publication
-For detailed information, please see the entire research paper here:
-[IntakeAI](IntakeAI.pdf).
+For detailed information, please see the entire [Research Paper](IntakeAI.pdf).
 
 ## Demo
 You can listen to a 3-minute long demo of GPT-4o roleplaying as a patient
@@ -25,8 +24,7 @@ interacting with the AI intake bot here:
 https://github.com/user-attachments/assets/434308f1-5937-4616-b4ac-f1f41a76c207
 
 After the call is ended, the dashboard will automatically add an entry with
-the collected information. You can access the dashboard here:
-[Dashboard Server](https://intakeai-4izya2nwk-ovesely.vercel.app/). As per the demo, “Mark Davis” was added there
+the collected information. You can access the hosted [Dashboard Server](https://intakeai-4izya2nwk-ovesely.vercel.app/) yourself. As per the demo, “Mark Davis” was added there
 automatically.
 
 ![Dashboard Screenshot](dashboard.png)
