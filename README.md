@@ -1,5 +1,3 @@
-
-https://github.com/user-attachments/assets/bdad29ae-6a62-4c09-ba60-84d73f82cd8f
 # IntakeAI
 ## Abstract
 Access to mental health treatment faces large barriers when it comes to the 
