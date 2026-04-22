@@ -1,4 +1,4 @@
-curl -X POST https://neuro140.vercel.app/store \
+curl -X POST https://intakeai-mauve.vercel.app/store \
   -H "Content-Type: application/json" \
   -d '{
         "first_name": "Simon",
