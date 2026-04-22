@@ -6,7 +6,7 @@ bottlenecks resulting in missed calls and denied access to treatment. This
 project explores whether a conversational AI agent can be used to streamline 
 intake for mental health treatment centers by handling calls, collecting key 
 patient information, and conducting a brief screening. I built and deployed
-a voice-based AI intake bot using Bland.AI and built a backend system to 
+a voice-based AI intake bot using Bland.AI and built a backend system using Python and Firebase to 
 securely store caller data and screening results. I then evaluated the bot’s 
 performance using an adapted version of the 3-bot evaluation framework with
 GPT-4o acting as users with different personas. The results showed a high 
