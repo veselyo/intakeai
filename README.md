@@ -24,7 +24,7 @@ interacting with the AI intake bot here:
 https://github.com/user-attachments/assets/434308f1-5937-4616-b4ac-f1f41a76c207
 
 After the call is ended, the dashboard will automatically add an entry with
-the collected information. You can access the hosted [Dashboard Server](https://intakeai-4izya2nwk-ovesely.vercel.app/) yourself. As per the demo, “Mark Davis” was added there
+the collected information. You can access the hosted [Dashboard Server](intakeai-git-main-ovesely.vercel.app) yourself. As per the demo, “Mark Davis” was added there
 automatically.
 
 ![Dashboard Screenshot](dashboard.png)
