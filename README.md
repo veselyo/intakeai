@@ -9,13 +9,13 @@ patient information, and conducting a brief screening. I built and deployed
 a voice-based AI intake bot using Bland.AI and built a backend system using Python and Firebase to 
 securely store caller data and screening results. I then evaluated the bot’s 
 performance using an adapted version of the 3-bot evaluation framework with
-GPT-4o acting as users with different personas. The results showed a high 
+GPT-4o acting as users with different personas as well as the evaluator. The results showed a high 
 reliability in data collection accuracy, clarity, tone, and role adherence. 
 These findings suggest that conversation AI can be a highly useful tool in 
 reducing barriers to care at the earliest stages of the intake process.
 
 ## Research Publication
-For detailed information, please see the entire [Research Paper](IntakeAI.pdf).
+Full methodology and results are written up in the research paper [Research Paper](IntakeAI.pdf).
 
 ## Demo
 You can listen to a 3-minute long demo of GPT-4o roleplaying as a patient
